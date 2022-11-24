@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:19:32 by aoumad            #+#    #+#             */
-/*   Updated: 2022/08/07 17:37:52 by aoumad           ###   ########.fr       */
+/*   Updated: 2022/11/24 18:25:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_philo
 	pthread_mutex_t	*r_hand;
 	int				eating_routine;
 	int				taking_fork;
-	int				dead_time;
+	long			dead_time;
 	int				meals_counter;
 	long			last_eat;
 	int				finish_routine;
@@ -69,6 +69,7 @@ typedef struct s_philo
 	int				nbr_of_meals;
 	pthread_mutex_t	lock_print;
 	pthread_mutex_t	lock_dead;
+	pthread_t		death_thread;
 	t_data			*data;
 }	t_philo;
 void	ft_helper_display(void);

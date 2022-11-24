@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 07:55:33 by aoumad            #+#    #+#             */
-/*   Updated: 2022/08/07 10:58:37 by aoumad           ###   ########.fr       */
+/*   Updated: 2022/11/24 17:35:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <signal.h>
+# include <fcntl.h>
 
 # define ERROR 0
 # define VALID 1

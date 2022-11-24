@@ -25,7 +25,9 @@ void	*ft_death_checker(void *arg)
 			philo->data->died = DEAD;
 			philo->dead_time = ft_get_time_of_day() - philo->time_reference;
 			ft_affichage("is died", philo, DEAD);
+			break ;
 		}
+		usleep(200);
 	}
 	return (NULL);
 }
