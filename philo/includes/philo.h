@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:19:32 by aoumad            #+#    #+#             */
-/*   Updated: 2022/11/25 16:09:34 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/25 18:37:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int		ft_all_ate(t_philo *philo);
 void	*ft_routine(void *arg);
 void	ft_taking_forks(t_philo *philo);
 void	ft_eating_case(t_philo *philo);
-void	*ft_death_checker(void *arg);
 void	ft_sleeping_thinking(t_philo *philo);
 void	ft_check_all_ate(t_data *data);
 void	ft_init_philos(t_philo *philo, t_data *data);

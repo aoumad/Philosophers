@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/20 23:35:41 by aoumad            #+#    #+#              #
-#    Updated: 2022/08/08 09:35:09 by aoumad           ###   ########.fr        #
+#    Updated: 2022/11/25 18:37:44 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 INC 	= includes/philo.h
 
-SRC		=	srcs/operations/ft_death_checker.c srcs/operations/ft_eating_case.c \
+SRC		=	srcs/operations/ft_eating_case.c \
 			srcs/operations/ft_routine.c srcs/operations/ft_sleeping_thinking.c \
 			srcs/operations/ft_taking_forks.c srcs/parsing/ft_init_args.c \
 			srcs/parsing/ft_mutex_destroy.c srcs/parsing/ft_init_mutex.c \
