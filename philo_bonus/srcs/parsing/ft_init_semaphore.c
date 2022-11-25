@@ -6,7 +6,7 @@
 /*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/24 08:01:26 by aoumad            #+#    #+#             */
-/*   Updated: 2022/08/07 13:29:42 by aoumad           ###   ########.fr       */
+/*   Updated: 2022/11/25 11:24:01 by aoumad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_init_semaphore(t_data *data)
 	data->exit = sem_open("/exit", O_CREAT, 0644, 0);
 	sem_unlink("/dead_sem");
 	data->dead_sem = sem_open("/dead_sem", O_CREAT, 0644, 1);
-	if (sem_unlink("/eat_enough"))
-		puts("not eat enough0");
+	sem_unlink("/eat_enough");
 	data->eat_enough = sem_open("/eat_enough", O_CREAT, 0644, 0);
 }

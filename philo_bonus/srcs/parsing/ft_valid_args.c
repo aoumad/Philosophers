@@ -6,7 +6,7 @@
 /*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:36:40 by aoumad            #+#    #+#             */
-/*   Updated: 2022/08/07 11:05:32 by aoumad           ###   ########.fr       */
+/*   Updated: 2022/11/25 12:57:03 by aoumad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,7 @@ int	ft_check_pointing_cmd(int argc, char **argv, t_data *data)
 	if (data->time_to_die < 60)
 		status = 2;
 	if (data->time_to_eat < 60)
-	{
-		printf("ahaha\n");
-		printf("%d\n", data->time_to_eat);
 		status = 3;
-	}
 	if (data->time_to_sleep < 60)
 		status = 4;
 	if (argc == 6 && ft_atoi(argv[5]) == 0)

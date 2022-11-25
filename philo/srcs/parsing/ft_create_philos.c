@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_create_philos.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 18:23:42 by aoumad            #+#    #+#             */
-/*   Updated: 2022/11/24 19:17:27 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/25 09:54:17 by aoumad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ void	ft_create_philos(t_data *data)
 		pthread_create(&data->philo[i].thread, NULL, ft_routine,
 			&data->philo[i]);
 		pthread_detach(data->philo[i].thread);
-		// pthread_create(&data->philo[i].death_thread, NULL, ft_death_checker, &data->philo[i]);
-		// pthread_join(data->philo[i].death_thread, NULL);
-		// pthread_detach(data->philo[i].death_thread);
 		i++;
 		usleep(100);
-		// usleep(50);
 	}
 	ft_check_all_ate(data);
 }
@@ -58,18 +54,19 @@ void	ft_init_philos(t_philo *philo, t_data *data)
 void	ft_check_all_ate(t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;
-	// while (data->died != DEAD)
 	while (data->died != DEAD && j < data->nbr_philos)
 	{
-		if (ft_get_time_of_day() - data->philo->last_eat >= (long)data->philo->time_to_die)
+		if (ft_get_time_of_day() - data->philo->last_eat >= \
+			(long)data->philo->time_to_die)
 		{
 			pthread_mutex_lock(&data->philo->lock_dead);
 			data->died = DEAD;
-			data->philo->dead_time = ft_get_time_of_day() - data->philo->time_reference;
+			data->philo->dead_time = ft_get_time_of_day() - \
+			data->philo->time_reference;
 			ft_affichage("is died", data->philo, DEAD);
 			break ;
 		}
