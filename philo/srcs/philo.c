@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:28:00 by aoumad            #+#    #+#             */
-/*   Updated: 2022/08/07 19:18:10 by aoumad           ###   ########.fr       */
+/*   Updated: 2022/11/25 17:10:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int	main(int argc, char **argv)
 	ft_create_philos(data);
 	ft_mutex_destroy(data);
 	free(data->philo);
+	free(data->forks);
 	free(data);
+	return (0);
 }

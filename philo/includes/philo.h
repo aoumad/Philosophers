@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 16:19:32 by aoumad            #+#    #+#             */
-/*   Updated: 2022/11/24 18:25:52 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/25 16:09:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ enum e_philo_state
 	TRUE,
 	DONE_ROUTINE,
 	DEAD,
-	FORKS
 };
 
 typedef struct s_philo	t_philo;
@@ -55,11 +54,9 @@ typedef struct s_philo
 	pthread_mutex_t	*l_hand;
 	pthread_mutex_t	*r_hand;
 	int				eating_routine;
-	int				taking_fork;
 	long			dead_time;
 	int				meals_counter;
 	long			last_eat;
-	int				finish_routine;
 	long			time_reference;
 	pthread_t		thread;
 	int				nbr_philos;
