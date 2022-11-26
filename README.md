@@ -97,3 +97,39 @@ How many times we opened our Web browser and we opened two tabs, the first one f
 ## What is a THREAD?
 
 A thread is a single sequence within a process. Because threads have some of the properties of the processes, they are sometimes called lightweight processes.
+
+![Threads_vs_process.png](https://github.com/aoumad/Philosophers/blob/main/imgs/Threads_vs_process.png)
+
+-As you can see in the image above, Threads are not independent from each other unlike processes. As a result, threads shares with other threads their code section, data section and OS resources like open files and signals. But, like processes, a thread has it's own stack space, register and a program counter (PC).
+- But since all of the threads are part of the same process, they share the same virtual memory adress space: the same code, the same heap, the same shared libraries.
+- A threads's context has a smaller footprint in terms of resources than the context of a process. Which means that it is much faster for the system to create a thread than it is to create a process. As well as it's quicker in terms of switching from one thread to another, compared to switching from one process to another.
+
+## Why Multithreading?
+
+- Threads are popular way to improve application though parallelism. For example, in a browser, Multiple tabs can be different threads. and Multiple windows that contains many tabs within it can be different processes.
+- Earlier, we talked about the stack and the heap, the two kinds of memory available to a thread or process. Distinguishing between these kinds of memory matters because each thread will have its own stack. However, all the threads in a process will share the heap.
+
+![multithreading.png](https://github.com/aoumad/Philosophers/blob/main/imgs/multithreading.png)
+
+## USING POSIX Threads
+The standard interface in C to manipulate threads is POSIX with it's <pthread.h> library. It contains around sixty functions to create, detach join and also destroy threads, as well as to manage their shared memory. We will only study a fraction of these in this article. In order to compile a program using this library, we shouldn't forget to link it with -pthread in our Makefile.
+
+### Creating a Thread
+ It is used to create a new thread.
+ 
+```c
+#include <phtreads.h>
+```
+
+```c
+int pthread_create(pthread_t * thread, const pthread_attr_t * attr, void * (*start_routine)(void *), void *arg);
+```
+
+- Parameters:
+ 
+◦ thread: pointer to an unsigned integer value that returns the thread id of the thread created.
+
+◦ attr: pointer to a structure that is used to define thread attributes like detached state, scheduling   policy, stack address, etc. Set to NULL for default thread attributes.
+  start_routine: pointer to a subroutine that is executed by the thread. The return type and parameter     type of the subroutine must be of type void *. The function has a single attribute but if multiple       values need to be passed to the function, a struct must be used.
+
+◦ arg: pointer to void that contains the arguments to the function defined in the earlier argument
