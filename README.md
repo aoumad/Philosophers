@@ -1,6 +1,7 @@
 # Philosophers
  Philosophers an individual project at 42 about introduction to the basics of process threading, and how work on the same memory space. And learn about mutexes, semaphores, and shared memory.
 
+![Dinning_philosophers.png](https://github.com/aoumad/Philosophers/blob/main/imgs/Dinning_philosophers.png)
 
 ## Table of content
   - [Overview](#overview)
@@ -130,6 +131,45 @@ int pthread_create(pthread_t * thread, const pthread_attr_t * attr, void * (*sta
 ◦ thread: pointer to an unsigned integer value that returns the thread id of the thread created.
 
 ◦ attr: pointer to a structure that is used to define thread attributes like detached state, scheduling   policy, stack address, etc. Set to NULL for default thread attributes.
-  start_routine: pointer to a subroutine that is executed by the thread. The return type and parameter     type of the subroutine must be of type void *. The function has a single attribute but if multiple       values need to be passed to the function, a struct must be used.
+  
+◦ start_routine: pointer to a subroutine that is executed by the thread. The return type and parameter     type of the subroutine must be of type void *. The function has a single attribute but if multiple       values need to be passed to the function, a struct must be used.
 
 ◦ arg: pointer to void that contains the arguments to the function defined in the earlier argument
+
+> **Note**
+> 💡 The last argument can help us to pass arguments to the function but we can also get results from the function using the second parameter of `pthread_join`
+
+### Waiting:
+
+```c
+int pthread_join(pthread_t th, void **thread_return);
+```
+
+    Used to wait for the termination of a thread.
+
+**th:** The target thread whose termination you're waiting for.
+
+**thread_return*:*** NULL, or a pointer to a location where the function can store the value passed to *[pthread_exit()](https://www.qnx.com/developers/docs/6.4.0/neutrino/lib_ref/p/pthread_exit.html)* by the target thread.
+
+`pthread_join` does two things:
+
+1. Wait for the thread to finish.
+2. Clean up any resources associated with the thread
+
+If you exit the process without joining, then (2) will be done for you by the OS (although it won't do thread cancellation cleanup, just nuke the thread from orbit), and (1) will not. So whether you need to call `pthread_join` depends on whether you need (1) to happen.
+
+If you don't need the thread to run, then as everyone else is saying you may as well detach it. A detached thread cannot be joined (so you can't wait on its completion), but its resources are freed automatically if it does complete.
+
+### Detaching a thread:
+
+```c
+int pthread_detach(pthread_t tid);
+```
+- Used to detach a thread. A detached thread does not require a thread to join on terminating. The resources of the thread are automatically released after terminating if the thread is detached.
+- other threads will not be able to kill or wait for this thread with pthread_join
+
+> **Note**
+> 💡 The thread by default is created joinable but we can make it detached since creation using the thread attributes.
+>> Put in mind that the detached thread can no longer be joinable so the program might exit before its termination to solve this use: pthread_exit();
+
+## Mutexes (mutual exclusion)
