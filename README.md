@@ -243,3 +243,39 @@ However, mutexes can often provoke deadlocks. It's a situation in which each thr
  if (philo->id % 2 = 0)
      usleep(50)
 ```
+## Bonus part
+ ### General instructions
+ 
+ The specific rules for the bonus part are:
+- All the forks are put in the middle of the table.
+- They have no states in memory but the number of available forks is represented by a semaphore.
+- Each philosopher should be a process. But the main process should not be a philosopher.
+
+### What is a semaphore?
+- A semaphore is in integer variable, shared among multiple processes. The main aim of using a semaphore is process synchronization and access control for a common resource in a concurrent environment.
+- The initial value of a semaphore depends on the problem at hand. Usually, we use the number of resources available as the initial value.
+- It's a synchronization tool that doesn't require busy waiting. Hence, the operating system doesn't waste the CPU cycles when a process can't operate due to lack od access to a resource.
+![Semaphores.png](https://github.com/aoumad/Philosophers/blob/main/imgs/Semaphores.png)
+
+### Semaphore Operations
+- A semaphore has two indivisible (atomic) operations, namely: wait and signal or post. These operations are sometimes referred as P and V, or DOWN or UP in some docs.
+- In the code that appears here you can clearly see the simplest core use of a semaphore:
+![Semaphore.png](https://github.com/aoumad/Philosophers/blob/main/imgs/Semaphore.png)
+
+### Types of Semaphore
+In general, there are two types of semaphores:
+
+1- **Binary Semaphore**
+	- A binary semaphore is a semaphore whose integer value range over 0 and 1.
+	- It's nothing, but similar to lock, with two values: 0 and 1. Here 0 means busy, while 1 means free.
+	- The idea behind using a binary semaphore is that, it allows only one process at a time to enter the critical section (thus allowing it to access the shared resource)
+	- Here, 0 represents that a process or a thread is in the critical section (i.e it is accessing the shared resource), while the other process or thread should wait for it to complete. One the other hand, 1 means that no process is accessing the shared resource, and the critical section is free.
+	- It guarantees mutual exclusion since no two processes can be in the critical section at any point in time.
+	- Since it is just a variable, which holds an integer value, it cannot guarantee bounded waiting. it might happen, that a process may never get a chance to enter the critical section, which may lead to it's starvation. And we don't want that.
+	
+2- **Counting Semaphore**
+	- A counting semaphore is a semaphore that has multiple values of the counter. The value can range over an unrestricted domain.
+	- It is a structure, which comprises a variable, known as a semaphore variable that can take more than two values and a list of task or entity, which is nothing but the process or the thread.
+	- The value of the counting semaphore can range between 0 and N, where N is the number of process which is free to enter and exit the critical section.
+	- As mentioned, a counting semaphore can allow multiple processes or threads to access the critical section, Hence mutual exclusion is not guaranteed.
+	- Since multiple instances of process can acesss the shared resource at any time, counting semaphore guarantees bounded wait. Using such a semaphore, a process which enters the critical section has to wait for the other process to get inside the critical section, implying that no process will starve.
