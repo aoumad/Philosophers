@@ -96,3 +96,4 @@ How many times we opened our Web browser and we opened two tabs, the first one f
 
 ## What is a THREAD?
 
+A thread is a single sequence within a process. Because threads have some of the properties of the processes, they are sometimes called lightweight processes.
