@@ -281,3 +281,96 @@ In general, there are two types of semaphores:
 	- The value of the counting semaphore can range between 0 and N, where N is the number of process which is free to enter and exit the critical section.
 	- As mentioned, a counting semaphore can allow multiple processes or threads to access the critical section, Hence mutual exclusion is not guaranteed.
 	- Since multiple instances of process can acesss the shared resource at any time, counting semaphore guarantees bounded wait. Using such a semaphore, a process which enters the critical section has to wait for the other process to get inside the critical section, implying that no process will starve.
+
+> **Note**
+> POSIX semaphores are available in two flavors: named and unnamed.
+> > `Named Semaphore` are like process-shared semaphores, except that named semaphores are referenced with a `pathname` rather than a `pshared` value. Named semaphores are sharable by several processes. As well as they have an owner user-ID, group-ID, and a protection mode.
+
+> > `Unnamed semaphore` are allocated in process memory and initialized. Unnamed semaphores might be usable by more than one process, depending on how the semaphore is allocated and initialized. Unnamed semaphore are either private, inherited throught fork(), or are protected by access protections of the regular file in which they are allocated and mapped.
+
+### Initialization
+```c
+#include <semaphore.h>
+
+sem_t semaphore;
+```
+
+### Creating a sem
+`sem_open()`
+> Create or access a named semaphore
+
+```c
+#include <semaphore.h>
+#include <fcntl.h>
+sem_t *sem_open(const char *name, int oflag);
+sem_t *sem_open(const char *name, int oflag, mode_t mode, unsigned int value);
+```
+
+The sem_open() function creates a connection between a named semaphore and a process. Once the connection has been created for the semaphore name specified by the name argument with a call to sem_open(), the process can use the address returned by the call to reference that semaphore.
+
+name → The name of the semaphore that you want to create or access.
+
+oflag → Flags that affect how the function creates a new semaphore. This argument is a combination of:
+
+O_CREAT
+
+This flag is used to create a semaphore if it does not already exist. If O_CREAT  is set and the semaphore already exists, then O_CREAT has no effect, except as noted under the description of the O_EXCL flag.
+
+O_EXCL
+
+If the O_EXCL and O_CREAT flags are set, the sem_open subroutine fails if the semaphore name exists. The check for the existence of the semaphore and the creation of the semaphore if it does not exist are atomic with respect to other processes executing the sem_open subroutine with the O_EXCL and O_CREAT flags set. If O_EXCL is set and O_CREAT is not set, O_EXCL is ignored.
+
+Example:
+
+```c
+sem_open("sem", O_CREAT | O_EXCL, 0644, n);
+```
+> 0644
+> 
+> > 0: ndicates octal notation, just like 0x indicates hexadecimal notation. So every time you write plain zero in C, it's actually an octal zero (fun fact).
+>
+> > 6 : (owning) User: read & write
+>
+> > 4 : Group: read
+>
+> > 4 : Other: read
+
+### Blocking | Waits:
+
+```c
+int sem_wai(sem_t *semaphore);
+```
+> Return Value : 
+> > 0 if success
+>
+> > -1 if error
+
+### Post | Release:
+
+```c
+int sem_post(sem_t *semaphore);
+```
+
+> **Return value:** \
+>  0 if success. \
+>  -1 if error. 
+### Closure:
+
+```c
+int sem_close(sem_t *sem);
+```
+
+closes the named semaphore referred to bysem,  allowing any resources that the system has allocated to the calling process for this semaphore to be freed. ***the semaphore still remains in the system.***
+
+> **Return value:** \
+>  0 if success. \
+>  -1 if error. 
+```c
+int sem_unlink(const char *name);
+```
+
+removes the named semaphore referred to by name from the system. The semaphore name is removed immediately.  The semaphore is destroyed once all other processes that have the semaphore open close it.
+
+> **Return value:** \
+>  0 if success. \
+>  -1 if error.
