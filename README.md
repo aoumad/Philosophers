@@ -265,7 +265,8 @@ However, mutexes can often provoke deadlocks. It's a situation in which each thr
 ### Types of Semaphore
 In general, there are two types of semaphores:
 
-1- **Binary Semaphore**
+> 1- **Binary Semaphore**
+> 
 	- A binary semaphore is a semaphore whose integer value range over 0 and 1.
 	- It's nothing, but similar to lock, with two values: 0 and 1. Here 0 means busy, while 1 means free.
 	- The idea behind using a binary semaphore is that, it allows only one process at a time to enter the critical section (thus allowing it to access the shared resource)
@@ -273,7 +274,8 @@ In general, there are two types of semaphores:
 	- It guarantees mutual exclusion since no two processes can be in the critical section at any point in time.
 	- Since it is just a variable, which holds an integer value, it cannot guarantee bounded waiting. it might happen, that a process may never get a chance to enter the critical section, which may lead to it's starvation. And we don't want that.
 	
-2- **Counting Semaphore**
+> 2- Counting Semaphore
+> 
 	- A counting semaphore is a semaphore that has multiple values of the counter. The value can range over an unrestricted domain.
 	- It is a structure, which comprises a variable, known as a semaphore variable that can take more than two values and a list of task or entity, which is nothing but the process or the thread.
 	- The value of the counting semaphore can range between 0 and N, where N is the number of process which is free to enter and exit the critical section.
