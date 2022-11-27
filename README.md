@@ -1,7 +1,7 @@
 # Philosophers
  Philosophers an individual project at 42 about introduction to the basics of process threading, and how work on the same memory space. And learn about mutexes, semaphores, and shared memory.
-
-![Dinning_philosophers.png](https://github.com/aoumad/Philosophers/blob/main/imgs/Dinning_philosophers.png)
+ 
+![results.png](https://github.com/aoumad/Philosophers/blob/main/imgs/results.png)
 
 ## Table of content
   - [Overview](#overview)
@@ -13,6 +13,8 @@
   > **Note**
   > In both parts of mandatory and bonus section we will discuss all the things we will need to know
   >> (Mutexes, Semaphores, Deadlocks, Race condition...)
+  
+  ![Dinning_philosophers.png](https://github.com/aoumad/Philosophers/blob/main/imgs/Dinning_philosophers.png)
   
   ### Overview
   ---
