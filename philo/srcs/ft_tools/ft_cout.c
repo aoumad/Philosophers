@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cout.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 13:58:03 by aoumad            #+#    #+#             */
-/*   Updated: 2022/11/25 16:24:54 by marvin           ###   ########.fr       */
+/*   Updated: 2022/11/25 20:54:13 by aoumad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_affichage(char *message, t_philo *philo, int status)
 	if (status == DEAD)
 	{
 		pthread_mutex_lock(&philo->lock_dead);
-		// data->died = DEAD;
 		philo->dead_time = ft_get_time_of_day() - \
 		philo->time_reference;
 		printf("%ld\t%d\t%s\n", philo->dead_time, philo->id + 1, message);

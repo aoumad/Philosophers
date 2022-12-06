@@ -6,7 +6,7 @@
 /*   By: aoumad <aoumad@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 18:23:42 by aoumad            #+#    #+#             */
-/*   Updated: 2022/11/25 09:54:17 by aoumad           ###   ########.fr       */
+/*   Updated: 2022/11/25 20:54:41 by aoumad           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,8 @@ void	ft_check_all_ate(t_data *data)
 		if (ft_get_time_of_day() - data->philo->last_eat >= \
 			(long)data->philo->time_to_die)
 		{
-			// pthread_mutex_lock(&data->philo->lock_dead);
 			data->died = DEAD;
-			// data->philo->dead_time = ft_get_time_of_day() -
-			// data->philo->time_reference;
 			ft_affichage("is died", data->philo, DEAD);
-			// break ;
 		}
 		if (ft_all_ate(&data->philo[i]) == DONE_ROUTINE)
 			i++;
